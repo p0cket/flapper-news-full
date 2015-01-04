@@ -16,6 +16,7 @@ router.get('/posts', function(req, res, next) {
       return next(err);
     }
 
+    console.log(posts);
     res.json(posts);
   });
 });

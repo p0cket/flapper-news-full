@@ -10,6 +10,7 @@ app.controller('MainCtrl', [
       if(!$scope.title) {
         return;
       }
+      // Injected from postservice.js
       postService.create({
         title: $scope.title,
         link: $scope.link
