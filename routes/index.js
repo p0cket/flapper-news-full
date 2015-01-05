@@ -61,6 +61,19 @@ router.put('/posts/:post/upvote', function(req, res, next) {
   });
 });
 
+router.put('/posts/:post/downvote', function(req, res, next) {
+  req.post.downvote(function(err, post){
+    if (err) {
+      return next(err);
+    }
+
+    console.log("HEREEEE!" + post);
+
+    res.json(post);
+  });
+});
+
+
 router.post('/posts/:post/comments', function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
@@ -102,5 +115,15 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
     res.json(comment);
   });
 });
+
+router.put('/posts/:post/comments/:comment/downvote', function(req, res, next) {
+  req.comment.downvote(function(err, comment){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(comment);
+  })
+})
 
 module.exports = router;
