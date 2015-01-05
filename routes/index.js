@@ -1,6 +1,27 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport'),
+LocalStrategy = require('passport-local').Strategy;
 
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    if (username === 'admin' && password === 'lynda') {
+      return done(null, {username: 'admin'});
+    }
+
+    return done(null, false);
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+  done(null, {username: username});
+});
+
+module.exports = passport;
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', {
@@ -19,6 +40,8 @@ app.post('/login',
     failureFlash: true
   })
 );
+// ^passport stuff when I didn't know
+
 
 router.get('/posts', function(req, res, next) {
   Post.find(function(err, posts) {
