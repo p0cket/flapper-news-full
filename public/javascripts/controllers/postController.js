@@ -4,29 +4,23 @@ app.controller('PostCtrl', [
   'post',
   function($scope, postService, post){
     $scope.post = post;
-
+    
     $scope.addComment = function(){
       if(!$scope.body) {
         return;
       }
       postService.addComment(post._id, {
         body: $scope.body,
-        author: 'user',
+        author: 'user',        
       }).success(function(comment) {
         $scope.post.comments.push(comment);
       });
       $scope.body = '';
     };
-
+    
     $scope.incrementUpvotes = function(comment){
       postService.upvoteComment(post, comment);
     };
-
-    $scope.incremetnDownvotes = function(comment){
-      console.log(post, comment);
-
-      postService.downvoteComment(post, comment);
-    };
-
+    
   }
 ]);

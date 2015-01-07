@@ -23,9 +23,5 @@ app.controller('MainCtrl', [
       postService.upvote(post);
     };
 
-    $scope.incrementDownvotes = function(post) {
-      postService.downvote(post);
-    };
-
   }
 ]);

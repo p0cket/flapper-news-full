@@ -29,13 +29,6 @@ app.service('postService', function ($http) {
     })
   };
 
-  this.downvote = function(post) {
-    return $http.put('/posts/' + post._id + '/downvote')
-      .success(function (data) {
-        angular.copy(data, post);
-    })
-  };
-
   this.addComment = function(id, comment) {
     return $http.post('/posts/' + id + '/comments', comment);
   };
@@ -46,18 +39,4 @@ app.service('postService', function ($http) {
         angular.copy(data, comment);
     });
   };
-
-  this.downvoteComment = function (post, comment) {
-    console.log('downvoteComment');
-    return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/downvote')
-      .success(function(data){
-        angular.copy(data, comment);
-    });
-  };
-
-  this.addProfileName = function (profile) {
-    console.log('Add profile name now');
-    return $http.put('')
-  };
-
 });
