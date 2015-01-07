@@ -86,6 +86,25 @@
     </form>
   </script>
 
+  <script type="text/ng-template" id="/profiles.html">
+    <div class="page-header">
+      <h3>
+        <a>
+          {{profile.name}}
+        </a>
+      </h3>
+    </div>
+
+    <form ng-submit="addProfileName()" style="margin-top:30px;">
+      <h3>Add a new profileName</h3>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="profileName" ng-model="profileName" />
+      </div>
+      <button type="submit" class="btn btn-primary">submitProfileUsername</button>
+    </form>
+  </script>
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
 

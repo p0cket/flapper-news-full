@@ -55,4 +55,9 @@ app.service('postService', function ($http) {
     });
   };
 
+  this.addProfileName = function (profile) {
+    console.log('Add profile name now');
+    return $http.put('')
+  };
+
 });
