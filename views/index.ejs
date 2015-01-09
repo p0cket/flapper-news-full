@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Flapper News</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body ng-app="flapperNews">
   <script type="text/ng-template" id="/home.html">
-      <div class="page-header">
-        <h1>Flapper News</h1>
-      </div>
+    <div class="page-header">
+      <h1>Flapper News</h1>
+    </div>
 
-      <div ng-repeat="post in posts | orderBy:'-upvotes'">
-        <span class="glyphicon glyphicon-thumbs-up"
-          ng-click="incrementUpvotes(post)"></span>
-        {{post.upvotes}}
-        <span style="font-size:20px; margin-left:10px;">
+    <div ng-repeat="post in posts | orderBy:'-upvotes'">
+      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span> {{post.upvotes}}
+      <span style="font-size:20px; margin-left:10px;">
           <a ng-show="post.link" href="{{post.link}}">
             {{post.title}}
           </a>
           <span ng-hide="post.link">
             {{post.title}}
           </span>
-        </span>
-        <span>
+      </span>
+      <span>
           <a href="#/posts/{{post._id}}">Comments</a>
         </span>
+    </div>
+
+    <form ng-submit="addPost()" style="margin-top:30px;">
+      <h3>Add a new post</h3>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" ng-model="title" />
       </div>
-
-      <form ng-submit="addPost()"
-        style="margin-top:30px;">
-        <h3>Add a new post</h3>
-
-        <div class="form-group">
-          <input type="text"
-            class="form-control"
-            placeholder="Title"
-            ng-model="title"/>
-        </div>
-        <div class="form-group">
-          <input type="text"
-            class="form-control"
-            placeholder="Link"
-            ng-model="link"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Link" ng-model="link" />
+      </div>
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
   </script>
 
   <script type="text/ng-template" id="/posts.html">
@@ -60,27 +53,43 @@
     </div>
 
     <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up"
-        ng-click="incrementUpvotes(comment)"></span>
-      {{comment.upvotes}} - by {{comment.author}}
+      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
       <span style="font-size:20px; margin-left:10px;">
         {{comment.body}}
       </span>
     </div>
 
-    <form ng-submit="addComment()"
-      style="margin-top:30px;">
+    <form ng-submit="addComment()" style="margin-top:30px;">
       <h3>Add a new comment</h3>
 
       <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Comment"
-        ng-model="body"/>
+        <input type="text" class="form-control" placeholder="Comment" ng-model="body" />
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
   </script>
+
+<!--  -->
+  <script type="text/ng-template" id="/profiles.html">
+    <div class="page-header">
+      <h1>Pocket News: {{profile.username}}</h1>
+    </div>
+
+    <div ng-repeat=" in post.comments | orderBy:'-upvotes'">
+      <span style="font-size:20px; margin-left:10px;">
+      {{profile.bio}}
+      </span>
+    </div>
+
+    <form ng-submit="addBio()" style="margin-top:30px;">
+      <h3>Add a your bio</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Add a bit about yourself!" ng-model="bio" />
+      </div>
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+  </script>
+<!--  -->
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -99,4 +108,5 @@
   <script src="javascripts/controllers/postController.js"></script>
   <script src="javascripts/config/routes.js"></script>
 </body>
+
 </html>
