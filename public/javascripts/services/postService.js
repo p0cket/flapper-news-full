@@ -33,6 +33,10 @@ app.service('postService', function ($http) {
     return $http.post('/posts/' + id + '/comments', comment);
   };
 
+  this.addBio = function(profile, bio) {
+    return $http.post('/posts/' + profile, bio);
+  };
+
   this.upvoteComment = function (post, comment) {
     return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote')
       .success(function(data) {
