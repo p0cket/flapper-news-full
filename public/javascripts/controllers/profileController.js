@@ -10,24 +10,41 @@ function($scope, postService, post) {
     if(!scope.body) {
       return;
     }
-
     postService.addBio(post.username, {
       body: $scope.body,
       author: 'user',
-    }).success(function(bio) {
-      $scope.post.bio = bio;
-    })
-    // }).success(function(bio) {
-    //   $scope.post.bio.push(bio);
-    // });
+    }).success(function(XXX) {
+      $scope.post.XXX.push(XXX);
+    });
     $scope.body = '';
   };
-
-    postService.addUsername(post.username, {
-      body: $scope.body,
-      author: 'user',
-    }).success(function(username) {
-      $scope.post.username = username;
-    })
 }
 ]);
+//
+// //
+// app.controller('PostCtrl', [
+// '$scope',
+// 'postService',
+// 'post',
+// function($scope, postService, post){
+//   $scope.post = post;
+//
+//   $scope.addComment = function(){
+//     if(!$scope.body) {
+//       return;
+//     }
+//     postService.addComment(post._id, {
+//       body: $scope.body,
+//       author: 'user',
+//     }).success(function(comment) {
+//       $scope.post.comments.push(comment);
+//     });
+//     $scope.body = '';
+//   };
+//
+//   $scope.incrementUpvotes = function(comment){
+//     postService.upvoteComment(post, comment);
+//   };
+//
+// }
+// ]);
