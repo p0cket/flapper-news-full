@@ -24,16 +24,6 @@ function($stateProvider, $urlRouterProvider) {
       }]
     }
     });
-    .state('profiles', {
-      url: '/profiles/{username}',
-      templateUrl: '/profiles.html',
-      controller: 'ProfileCtrl',
-    resolve: {
-      post: ['$stateParams', 'postService', function ($stateParams, postService) {
-        return postService.get($stateParams.username)
-      }]
-    }
-    })
 
   $urlRouterProvider.otherwise('home');
 }])
