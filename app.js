@@ -7,7 +7,28 @@ var bodyParser    = require('body-parser');
 var mongoose      = require('mongoose');
 
 // Conect to MongoDB
-mongoose.connect('mongodb://localhost/news');
+// mongoose.connect('mongodb://localhost/news');
+
+
+// instead we'll connect on Heroku
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+'mongodb://heroku_app33194409:eibdiesk3umc0vmvl5ubs2bjb8@ds031591.mongolab.com:31591/heroku_app33194409';
+
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, options, function (err, res) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
+//
+
 
 require('./models/Post');
 require('./models/Comment');
