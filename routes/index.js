@@ -103,4 +103,10 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
   });
 });
 
+app.post('/login',
+passport.authenticate('local', { successRedirect: '/',
+failureRedirect: '/login',
+failureFlash: true })
+);
+
 module.exports = router;
