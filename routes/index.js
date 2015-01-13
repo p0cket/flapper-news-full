@@ -33,7 +33,6 @@ router.post('/posts', function(req, res, next) {
   });
 });
 
-// When it has 'post' to default
 router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
 
@@ -103,14 +102,5 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
     res.json(comment);
   });
 });
-
-//
-app.post('/login',
-passport.authenticate('local', { successRedirect: '/',
-failureRedirect: '/login',
-failureFlash: 'Invalid username or password.' })
-);
-//
-
 
 module.exports = router;
