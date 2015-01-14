@@ -143,7 +143,7 @@ router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
 
 app.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true
   })
